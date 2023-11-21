@@ -177,7 +177,6 @@
                             $('#nocomment').remove();
 
                         $('#headerComment').text(' ');
-                        $('#commentText').text(' ');
                         $('#headerComment').text('Добавить комментарий');
                         $('#comments').append('<div class="d-flex"> <div class="col-6"> <div class="badge bg-secondary text-size">'+ response.name + '</div> </div> <div class="col-6"> '+ response.date + ' </div> </div> <div class="col-12 comment">'+ response.comment + '</div> <hr>')
                    }
