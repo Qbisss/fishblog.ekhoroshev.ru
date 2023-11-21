@@ -1,0 +1,26 @@
+.in-cc{
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 0px;
+    text-align: center;
+    width: 50%;
+}
+
+.in-cc a{
+    padding-right: 50px;
+    text-wrap: nowrap;
+    color: #666666;
+    text-decoration: none;
+}
+
+.in-cc a:hover{
+    color: #000000;
+}
+
+
+.header-c{
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 0;
+    text-align: center;
+}

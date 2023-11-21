@@ -1,0 +1,21 @@
+{
+  "public/images/logo.png": {
+    "file": "assets/logo-853c0132.png",
+    "src": "public/images/logo.png"
+  },
+  "resources/css/login.css": {
+    "file": "assets/login-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/css/login.css"
+  },
+  "resources/css/main.css": {
+    "file": "assets/main-72d94609.css",
+    "isEntry": true,
+    "src": "resources/css/main.css"
+  },
+  "resources/css/read.css": {
+    "file": "assets/read-949bb676.css",
+    "isEntry": true,
+    "src": "resources/css/read.css"
+  }
+}
