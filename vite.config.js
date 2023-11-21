@@ -7,7 +7,8 @@ export default defineConfig({
             input: [
                 'resources/css/main.css',
 			    'resources/css/read.css',
-			    'resources/css/login.css'
+			    'resources/css/login.css',
+				'resources/css/personal.css'
             ],
             refresh: true,
         }),

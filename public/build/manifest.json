@@ -13,6 +13,11 @@
     "isEntry": true,
     "src": "resources/css/main.css"
   },
+  "resources/css/personal.css": {
+    "file": "assets/personal-72fe0da6.css",
+    "isEntry": true,
+    "src": "resources/css/personal.css"
+  },
   "resources/css/read.css": {
     "file": "assets/read-949bb676.css",
     "isEntry": true,
