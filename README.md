@@ -1,5 +1,5 @@
 ## Демонстрация
-https://fishblog.ekhoroshev.ru
+http://fishblog.ekhoroshev.ru
 
 ## Админка
 admin@mail.ru
