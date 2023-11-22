@@ -52,7 +52,7 @@ Route::post('/addcomment', function(Request $request)
             return response()->json(['error' => "Нельзя вставлять ссылки"]);
 
         if($request->comment != strip_tags($request->comment))
-         return response()->json(['error' => "Запрещены html теги в комментариях!"]);
+            return response()->json(['error' => "Запрещены html теги в комментариях!"]);
 
         DB::table('comments')->insert([
             'email' => Auth::user()->email,
