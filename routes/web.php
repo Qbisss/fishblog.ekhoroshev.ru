@@ -42,6 +42,10 @@ Route::post('/addcomment', function(Request $request)
     if(!Auth::check())
         return;
 
+        
+        if($request->comment != strip_tags($request->comment))
+            return response()->json(['error' => "Запрещены html теги в комментариях!"]);
+        
         if(strlen($request->comment) < 6)
             return response()->json(['error' => "Слишком маленький комментарий"]);
 
@@ -50,9 +54,6 @@ Route::post('/addcomment', function(Request $request)
 
         if(str_contains($request->comment, 'http'))
             return response()->json(['error' => "Нельзя вставлять ссылки"]);
-
-        if($request->comment != strip_tags($request->comment))
-            return response()->json(['error' => "Запрещены html теги в комментариях!"]);
 
         DB::table('comments')->insert([
             'email' => Auth::user()->email,
