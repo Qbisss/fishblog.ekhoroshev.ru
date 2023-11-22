@@ -51,9 +51,8 @@ Route::post('/addcomment', function(Request $request)
         if(str_contains($request->comment, 'http'))
             return response()->json(['error' => "Нельзя вставлять ссылки"]);
 
-    //if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/", $request->comment)) {
-        //    return response()->json(['error' => "Найдены недопустимые символы"]);
-   //     }
+        if($request->comment != strip_tags($request->comment))
+         return response()->json(['error' => "Запрещены html теги в комментариях!"]);
 
         DB::table('comments')->insert([
             'email' => Auth::user()->email,
