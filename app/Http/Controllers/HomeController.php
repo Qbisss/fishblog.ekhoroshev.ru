@@ -8,15 +8,15 @@ class HomeController extends Controller
 {
     public function main()
     {
-        $posts = DB::table('table_posts')->orderBy('id', 'desc')->get();
+        $posts = DB::table('table_posts')->orderBy('id', 'desc')->take(3)->get();
 
-        return view('home', [ 'posts' => $posts]);
+        return view('home', [ 'posts' => $posts, 'category' => 'none']);
     }
 
     public function category($category)
     {
-        $posts = DB::table('table_posts')->where('category', $category)->orderBy('id', 'desc')->get();
+        $posts = DB::table('table_posts')->where('category', $category)->orderBy('id', 'desc')->take(3)->get();
 
-        return view('home', [ 'posts' => $posts]);
+        return view('home', [ 'posts' => $posts, 'category' => $category]);
     }
 }

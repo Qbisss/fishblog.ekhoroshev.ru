@@ -121,6 +121,7 @@
             </div>
         </main>
 
+        <x-footer />
         <script>
         
         $.ajaxSetup({

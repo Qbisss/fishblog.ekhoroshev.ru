@@ -13,6 +13,7 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\EditController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\LoadContentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,8 @@ Route::post('/publish/{id}', [CheckController::class, 'publish']);
 Route::post('/like', [LikeController::class, 'like']);
 Route::get('/edit/{id}', [EditController::class, 'edit']);
 Route::post('/republish', [EditController::class, 'post']);
+Route::post('/loadMore', [LoadContentController::class, 'loadContent']);
+
 Route::post('/addcomment', function(Request $request)
 {
     if(!Auth::check())
@@ -45,7 +48,7 @@ Route::post('/addcomment', function(Request $request)
         
         if($request->comment != strip_tags($request->comment))
             return response()->json(['error' => "Запрещены html теги в комментариях!"]);
-        
+
         if(strlen($request->comment) < 6)
             return response()->json(['error' => "Слишком маленький комментарий"]);
 

@@ -391,3 +391,15 @@ body{
     font-size: 18px;
     word-wrap: break-word;
 }
+
+.load{
+    width: 100%;
+    background-color: #5a80b1;
+    border: 0;
+    border-radius: 2px;
+    color: #e7e5e5;
+}
+
+.footer-nav{
+    margin-top: 50px;
+}

@@ -7,6 +7,7 @@
         <title>Блог о рыбалке</title>
 
         @vite(['resources/css/main.css'])
+        <!-- @vite('resources/js/like.js') -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/97d69fa06e.js" crossorigin="anonymous"></script>
@@ -20,7 +21,7 @@
             <div class="container-fluid">
                 <div class="container cont-c">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-8" id="content">
                             <div class="col-12 s-m">
                                 @foreach ($posts as $post)
                                 <h3 class="st-m-l"><a href="/read/{{$post->id}}" class="h-h">{{$post->title}}</a></h3>
@@ -44,7 +45,7 @@
                                     <a href="/read/{{$post->id}}" class="r-n">Читать полностью</a>
                                 </div>
                                 <div class="d-flex">
-                                    <form data-action="like" id="likeForm{{$post->id}}">
+                                    <form data-action="like" id="likeForm{{$post->id}}" >
                                     @csrf
                                      
                                     <p class="like-amount" id="amount{{$post->id}}">{{ $post->likes }}</p>
@@ -67,22 +68,32 @@
                                 </div>
 
                                 @endforeach
+
+                                
                             </div>
+
+                            @if(count($posts) >= 3)
+                            <div class="col-12" id ="buttonMore">
+                                <form data-action="/loadMore" id="load">
+                                   
+                                        <button type="submit" class="load">Загрузить еще</button>
+                                </form>
+                            </div>
+                            @endif
                         
                         </div>
 
                         <!-- rightbar comp -->
                         <x-rightbar />
+
+                        
                     </div>
                 </div>
                 
             </div>
         </main>
 
-        <footer>
-
-        </footer>
-
+        <x-footer />
         <script>
         
         $.ajaxSetup({
@@ -91,28 +102,67 @@
         }
         });
 
-        $('form[id^="likeForm"]').on('submit',function(event){
+        $( '#content' ).on( 'click', 'form[id^="likeForm"]', function( event ) {
            
-            event.preventDefault();      
-            var url = $(this).attr('data-action');
-            var id = this.id.replace(/likeForm/, '');
-            var amount = $('#amount'+id).html();
+           event.preventDefault();      
+           var url = $(this).attr('data-action');
+           var id = this.id.replace(/likeForm/, '');
+           var amount = $('#amount'+id).html();
 
-            $.ajax({
-                url: url,
-                method:"POST",
-                data:{
-                   id:id,
-                   amount:amount
-                },
-                success:function(response){
-                    console.log(response);
-                    $('#amount' + id).text(response.likes)
-                    $('#submitlike' + id).removeClass();
-                    $('#submitlike' + id).addClass(response.class);
-                },
-             });
-        });
+           console.log(url);
+           console.log(id);
+           console.log(amount);
+
+           $.ajax({
+               url: url,
+               method:"POST",
+               data:{
+                  id:id,
+                  amount:amount
+               },
+               success:function(response){
+                   console.log(response);
+                   $('#amount' + id).text(response.likes)
+                   $('#submitlike' + id).removeClass();
+                   $('#submitlike' + id).addClass(response.class);
+               },
+            });
+       });
+    </script>
+
+        <script>
+        var last = 1;
+        var category = "{{ $category }}";
+
+        $('#load').on('submit',function(event){
+           
+           event.preventDefault();      
+           var url = $(this).attr('data-action');
+           var token = $('meta[name="csrf-token"]').attr('content');
+           $.ajax({
+               url: url,
+               method:"POST",
+               headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+               data:{
+                last:last,
+                token:token,
+                category:category
+               },
+               success:function(response){
+                console.log(response);
+                if (response === undefined || response.length == 0 || response.length < 3)
+                    $('#buttonMore').remove();
+
+                for(const key in response)
+                {
+                    $('#content').append(response[key]);
+                    $('#content').append($('#buttonMore'));
+                }
+
+                last++;
+               },
+            });
+       });
         </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

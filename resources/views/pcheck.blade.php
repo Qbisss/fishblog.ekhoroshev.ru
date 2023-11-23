@@ -68,9 +68,7 @@
             </div>
         </main>
 
-        <footer>
-
-        </footer>
+        <x-footer />
         <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
