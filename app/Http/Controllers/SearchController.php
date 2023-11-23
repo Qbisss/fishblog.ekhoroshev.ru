@@ -17,6 +17,6 @@ class SearchController extends Controller
         ->orderBy('id', 'desc')
         ->get();
         
-        return view('home', ['posts' => $posts]);
+        return view('home', ['posts' => $posts, 'category' => 'none']);
     }
 }
