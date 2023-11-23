@@ -7,7 +7,6 @@
         <title>Блог о рыбалке</title>
 
         @vite(['resources/css/main.css'])
-        <!-- @vite('resources/js/like.js') -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/97d69fa06e.js" crossorigin="anonymous"></script>
