@@ -42,10 +42,9 @@ Route::post('/loadMore', [LoadContentController::class, 'loadContent']);
 
 Route::post('/addcomment', function(Request $request)
 {
-    if(!Auth::check())
-        return;
+        if(!Auth::check())
+            return response()->json(['error' => "Оставлять комментарии могут только авторизированные пользователи!"]);
 
-        
         if($request->comment != strip_tags($request->comment))
             return response()->json(['error' => "Запрещены html теги в комментариях!"]);
 
