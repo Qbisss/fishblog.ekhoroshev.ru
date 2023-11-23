@@ -26,7 +26,7 @@
                                     {{ date("d.m.Y",strtotime("$post->date")) }}
                                     </div>
                                     <div class="col-6">
-                                    Автор: Егор
+                                    Автор: {{$post->name}}
                                     </div>
                                 </div>
                             </div>
